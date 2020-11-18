@@ -2,13 +2,17 @@
   "contractName": "MetoToken",
   "abi": [
     {
-      "inputs": [],
-      "payable": false,
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_initialSupply",
+          "type": "uint256"
+        }
+      ],
       "stateMutability": "nonpayable",
       "type": "constructor"
     },
     {
-      "constant": true,
       "inputs": [],
       "name": "totalSupply",
       "outputs": [
@@ -18,26 +22,27 @@
           "type": "uint256"
         }
       ],
-      "payable": false,
       "stateMutability": "view",
       "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"constant\":true,\"inputs\":[],\"name\":\"totalSupply\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/C/Users/Metodi/Desktop/ProjectsDapp/defi-react-app/contracts/MetoToken.sol\":\"MetoToken\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/Metodi/Desktop/ProjectsDapp/defi-react-app/contracts/MetoToken.sol\":{\"keccak256\":\"0xe30532c6aa3b9f3cf059dde2c5a351643517c24ddd0c57a1e1585c3d393234fc\",\"urls\":[\"bzz-raw://c1abd57475665e8860659d5ca80813a6655afdd17aca393a49965ecdea8a5b5a\",\"dweb:/ipfs/QmUm6zGJKoQtEkS1Dy4exznwjaF42aCMqoG3zyMieY1FRy\"]}},\"version\":1}",
-  "bytecode": "0x6080604052348015600f57600080fd5b50629896806000819055506084806100286000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c806318160ddd14602d575b600080fd5b60336049565b6040518082815260200191505060405180910390f35b6000548156fea265627a7a7231582054d6fd4f2be5c3954cd4ca1ddcb3eb4ee0dd11b1efd57f1fdc88073c4e5b890364736f6c63430005100032",
-  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060285760003560e01c806318160ddd14602d575b600080fd5b60336049565b6040518082815260200191505060405180910390f35b6000548156fea265627a7a7231582054d6fd4f2be5c3954cd4ca1ddcb3eb4ee0dd11b1efd57f1fdc88073c4e5b890364736f6c63430005100032",
-  "sourceMap": "70:215:0:-;;;220:62;8:9:-1;5:2;;;30:1;27;20:12;5:2;220:62:0;266:8;252:11;:22;;;;70:215;;;;;;",
-  "deployedSourceMap": "70:215:0:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;70:215:0;;;;;;;;;;;;;;;;;;;185:26;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;:::o",
-  "source": "// SPDX-License-Identifier: MIT\r\npragma solidity >=0.4.21 <=0.7.0;\r\n\r\ncontract MetoToken {\r\n    //constructor \r\n    //set total number of tokens\r\n    //read total number of tokens\r\n    uint256 public totalSupply;\r\n\r\n    constructor() public {\r\n        totalSupply = 10000000;\r\n    }\r\n}",
+  "metadata": "{\"compiler\":{\"version\":\"0.7.0+commit.9e61f92b\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_initialSupply\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"totalSupply\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/C/Users/Metodi/Desktop/ProjectsDapp/defi-react-app/contracts/MetoToken.sol\":\"MetoToken\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/Metodi/Desktop/ProjectsDapp/defi-react-app/contracts/MetoToken.sol\":{\"keccak256\":\"0xbca284584e3c9634a4a34dc31a055dff7f630be648816ae71412999a7ea5cf5e\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://ff7f44d2f741a8aa0066592932cec156953bfc9614b9e07303eb1061e67094ec\",\"dweb:/ipfs/QmWTkzeyf7LQLMFSaLQsMwetSg9eoka7bnsr6SWhw3GSLu\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b506040516100df3803806100df8339818101604052602081101561003357600080fd5b8101908080519060200190929190505050806000819055505060858061005a6000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c806318160ddd14602d575b600080fd5b60336049565b6040518082815260200191505060405180910390f35b6000548156fea2646970667358221220d8c64a71836187df353f1fe3cf16531077b4b3ae06c1ac0d0f66cce163483d2564736f6c63430007000033",
+  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060285760003560e01c806318160ddd14602d575b600080fd5b60336049565b6040518082815260200191505060405180910390f35b6000548156fea2646970667358221220d8c64a71836187df353f1fe3cf16531077b4b3ae06c1ac0d0f66cce163483d2564736f6c63430007000033",
+  "immutableReferences": {},
+  "sourceMap": "70:147:0:-:0;;;131:83;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;192:14;178:11;:28;;;;131:83;70:147;;;;;;",
+  "deployedSourceMap": "70:147:0:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;96:26;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;:::o",
+  "source": "// SPDX-License-Identifier: MIT\r\npragma solidity >=0.4.21 <=0.7.0;\r\n\r\ncontract MetoToken {\r\n    uint256 public totalSupply;\r\n\r\n    constructor(uint256 _initialSupply) {\r\n        totalSupply = _initialSupply;\r\n    }\r\n}",
   "sourcePath": "C:/Users/Metodi/Desktop/ProjectsDapp/defi-react-app/contracts/MetoToken.sol",
   "ast": {
     "absolutePath": "/C/Users/Metodi/Desktop/ProjectsDapp/defi-react-app/contracts/MetoToken.sol",
     "exportedSymbols": {
       "MetoToken": [
-        12
+        14
       ]
     },
-    "id": 13,
+    "id": 15,
+    "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
@@ -55,25 +60,29 @@
         "src": "33:33:0"
       },
       {
+        "abstract": false,
         "baseContracts": [],
         "contractDependencies": [],
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 12,
+        "id": 14,
         "linearizedBaseContracts": [
-          12
+          14
         ],
         "name": "MetoToken",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
+            "functionSelector": "18160ddd",
             "id": 3,
+            "mutability": "mutable",
             "name": "totalSupply",
             "nodeType": "VariableDeclaration",
-            "scope": 12,
-            "src": "185:26:0",
+            "overrides": null,
+            "scope": 14,
+            "src": "96:26:0",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -84,7 +93,7 @@
               "id": 2,
               "name": "uint256",
               "nodeType": "ElementaryTypeName",
-              "src": "185:7:0",
+              "src": "96:7:0",
               "typeDescriptions": {
                 "typeIdentifier": "t_uint256",
                 "typeString": "uint256"
@@ -95,26 +104,26 @@
           },
           {
             "body": {
-              "id": 10,
+              "id": 12,
               "nodeType": "Block",
-              "src": "241:41:0",
+              "src": "167:47:0",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 8,
+                    "id": 10,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 6,
+                      "id": 8,
                       "name": "totalSupply",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 3,
-                      "src": "252:11:0",
+                      "src": "178:11:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -124,74 +133,100 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "hexValue": "3130303030303030",
-                      "id": 7,
-                      "isConstant": false,
-                      "isLValue": false,
-                      "isPure": true,
-                      "kind": "number",
-                      "lValueRequested": false,
-                      "nodeType": "Literal",
-                      "src": "266:8:0",
-                      "subdenomination": null,
+                      "id": 9,
+                      "name": "_initialSupply",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 5,
+                      "src": "192:14:0",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_rational_10000000_by_1",
-                        "typeString": "int_const 10000000"
-                      },
-                      "value": "10000000"
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
                     },
-                    "src": "252:22:0",
+                    "src": "178:28:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "id": 9,
+                  "id": 11,
                   "nodeType": "ExpressionStatement",
-                  "src": "252:22:0"
+                  "src": "178:28:0"
                 }
               ]
             },
             "documentation": null,
-            "id": 11,
+            "id": 13,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [],
             "name": "",
             "nodeType": "FunctionDefinition",
+            "overrides": null,
             "parameters": {
-              "id": 4,
+              "id": 6,
               "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "231:2:0"
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5,
+                  "mutability": "mutable",
+                  "name": "_initialSupply",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 13,
+                  "src": "143:22:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "143:7:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "142:24:0"
             },
             "returnParameters": {
-              "id": 5,
+              "id": 7,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "241:0:0"
+              "src": "167:0:0"
             },
-            "scope": 12,
-            "src": "220:62:0",
+            "scope": 14,
+            "src": "131:83:0",
             "stateMutability": "nonpayable",
-            "superFunction": null,
+            "virtual": false,
             "visibility": "public"
           }
         ],
-        "scope": 13,
-        "src": "70:215:0"
+        "scope": 15,
+        "src": "70:147:0"
       }
     ],
-    "src": "33:252:0"
+    "src": "33:184:0"
   },
   "legacyAST": {
     "absolutePath": "/C/Users/Metodi/Desktop/ProjectsDapp/defi-react-app/contracts/MetoToken.sol",
     "exportedSymbols": {
       "MetoToken": [
-        12
+        14
       ]
     },
-    "id": 13,
+    "id": 15,
+    "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
@@ -209,25 +244,29 @@
         "src": "33:33:0"
       },
       {
+        "abstract": false,
         "baseContracts": [],
         "contractDependencies": [],
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
-        "id": 12,
+        "id": 14,
         "linearizedBaseContracts": [
-          12
+          14
         ],
         "name": "MetoToken",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
+            "functionSelector": "18160ddd",
             "id": 3,
+            "mutability": "mutable",
             "name": "totalSupply",
             "nodeType": "VariableDeclaration",
-            "scope": 12,
-            "src": "185:26:0",
+            "overrides": null,
+            "scope": 14,
+            "src": "96:26:0",
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -238,7 +277,7 @@
               "id": 2,
               "name": "uint256",
               "nodeType": "ElementaryTypeName",
-              "src": "185:7:0",
+              "src": "96:7:0",
               "typeDescriptions": {
                 "typeIdentifier": "t_uint256",
                 "typeString": "uint256"
@@ -249,26 +288,26 @@
           },
           {
             "body": {
-              "id": 10,
+              "id": 12,
               "nodeType": "Block",
-              "src": "241:41:0",
+              "src": "167:47:0",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
-                    "id": 8,
+                    "id": 10,
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
                     "lValueRequested": false,
                     "leftHandSide": {
                       "argumentTypes": null,
-                      "id": 6,
+                      "id": 8,
                       "name": "totalSupply",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 3,
-                      "src": "252:11:0",
+                      "src": "178:11:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_uint256",
                         "typeString": "uint256"
@@ -278,69 +317,94 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
-                      "hexValue": "3130303030303030",
-                      "id": 7,
-                      "isConstant": false,
-                      "isLValue": false,
-                      "isPure": true,
-                      "kind": "number",
-                      "lValueRequested": false,
-                      "nodeType": "Literal",
-                      "src": "266:8:0",
-                      "subdenomination": null,
+                      "id": 9,
+                      "name": "_initialSupply",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 5,
+                      "src": "192:14:0",
                       "typeDescriptions": {
-                        "typeIdentifier": "t_rational_10000000_by_1",
-                        "typeString": "int_const 10000000"
-                      },
-                      "value": "10000000"
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
                     },
-                    "src": "252:22:0",
+                    "src": "178:28:0",
                     "typeDescriptions": {
                       "typeIdentifier": "t_uint256",
                       "typeString": "uint256"
                     }
                   },
-                  "id": 9,
+                  "id": 11,
                   "nodeType": "ExpressionStatement",
-                  "src": "252:22:0"
+                  "src": "178:28:0"
                 }
               ]
             },
             "documentation": null,
-            "id": 11,
+            "id": 13,
             "implemented": true,
             "kind": "constructor",
             "modifiers": [],
             "name": "",
             "nodeType": "FunctionDefinition",
+            "overrides": null,
             "parameters": {
-              "id": 4,
+              "id": 6,
               "nodeType": "ParameterList",
-              "parameters": [],
-              "src": "231:2:0"
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 5,
+                  "mutability": "mutable",
+                  "name": "_initialSupply",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 13,
+                  "src": "143:22:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "143:7:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "142:24:0"
             },
             "returnParameters": {
-              "id": 5,
+              "id": 7,
               "nodeType": "ParameterList",
               "parameters": [],
-              "src": "241:0:0"
+              "src": "167:0:0"
             },
-            "scope": 12,
-            "src": "220:62:0",
+            "scope": 14,
+            "src": "131:83:0",
             "stateMutability": "nonpayable",
-            "superFunction": null,
+            "virtual": false,
             "visibility": "public"
           }
         ],
-        "scope": 13,
-        "src": "70:215:0"
+        "scope": 15,
+        "src": "70:147:0"
       }
     ],
-    "src": "33:252:0"
+    "src": "33:184:0"
   },
   "compiler": {
     "name": "solc",
-    "version": "0.5.16+commit.9c3226ce.Emscripten.clang"
+    "version": "0.7.0+commit.9e61f92b.Emscripten.clang"
   },
   "networks": {
     "5777": {
@@ -351,11 +415,15 @@
     }
   },
   "schemaVersion": "3.3.2",
-  "updatedAt": "2020-11-18T00:34:18.692Z",
+  "updatedAt": "2020-11-18T11:57:50.001Z",
   "devdoc": {
-    "methods": {}
+    "kind": "dev",
+    "methods": {},
+    "version": 1
   },
   "userdoc": {
-    "methods": {}
+    "kind": "user",
+    "methods": {},
+    "version": 1
   }
 }
