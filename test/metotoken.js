@@ -1,4 +1,4 @@
-const MetoToken = artifacts.require("./MetoToken.sol");
+/*const MetoToken = artifacts.require("./MetoToken.sol");
 
 contract("MetoToken", accounts => {
     let tokenInstance;
@@ -122,4 +122,4 @@ contract("MetoToken", accounts => {
             assert.equal(allowance.toNumber(), 0, 'should deduct 10 from 10 allowance');
         });
     });
-});
+});*/

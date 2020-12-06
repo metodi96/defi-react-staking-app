@@ -1,10 +1,10 @@
-const MetoToken = artifacts.require("MetoToken");
+//const MetoToken = artifacts.require("MetoToken");
 const MetoTokenV2Farm = artifacts.require("MetoTokenV2Farm");
 const DaiToken = artifacts.require("DaiToken");
 const TokenFarm = artifacts.require("TokenFarm");
 
 module.exports = async function(deployer, network, accounts) {
-  await deployer.deploy(MetoToken);
+  //await deployer.deploy(MetoToken);
 
   await deployer.deploy(DaiToken);
   const daiToken = await DaiToken.deployed();

@@ -38,16 +38,11 @@ contract DaiToken {
     //delegated transfer
     //3 accounts msg.sender, transfer from and transfer to
     function transferFrom(address _from, address _to, uint256 _value) public returns (bool success) {
-        //require _from to have enough tokens and to have a big enough allowance
         require(_value <= balanceOf[_from]);
-        //require a big enough allowance - msg.sender is approved to send on behalf of _from
         require(_value <= allowance[_from][msg.sender]);
-        //change balance
         balanceOf[_from] -= _value;
         balanceOf[_to] += _value;
-        //update allowance
         allowance[_from][msg.sender] -= _value;
-        //emit Transfer event
         emit Transfer(_from, _to, _value);
         return true;
     }
