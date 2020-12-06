@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: MIT
-pragma solidity >=0.4.21 <=0.7.0;
+pragma solidity >= 0.7.0 <=0.7.5;
 
 contract DaiToken {
     string public name = 'Mock Dai Token';
     string public symbol = 'mDAI';
     string public standard = 'Mock Dai Token v1.0';
-    uint256 public totalSupply;
+    uint256 public totalSupply = 1000000000000000000000000;
     mapping (address => uint) public balanceOf;
     mapping (address => mapping(address => uint256)) public allowance;
 
@@ -13,9 +13,8 @@ contract DaiToken {
     //I the owner approve the spender to spend _value amount of tokens
     event Approval(address indexed _owner, address indexed _spender, uint256 _value);
 
-    constructor(uint256 _initialSupply) {
-        balanceOf[msg.sender] = _initialSupply;
-        totalSupply = _initialSupply;
+    constructor() {
+        balanceOf[msg.sender] = totalSupply;
     }
 
     function transfer(address _to, uint256 _value) public returns (bool success) {
