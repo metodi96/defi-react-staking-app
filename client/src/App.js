@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from "react";
-import SimpleStorageContract from "./contracts/SimpleStorage.json";
+import DaiToken from "./contracts/DaiToken.json";
+import MetoToken from "./contracts/MetoTokenV2Farm.json";
+import TokenFarm from "./contracts/TokenFarm.json";
 import getWeb3 from "./getWeb3";
 
 import "./App.css";
 
 function App() {
-  const [storageValue, setStorageValue] = useState(0);
   const [web3, setWeb3] = useState(undefined);
   const [accounts, setAccounts] = useState(undefined);
-  const [contract, setContract] = useState(undefined);
+  const [contractDai, setContractDai] = useState(undefined);
+  const [contractMeto, setContractMeto] = useState(undefined);
+  const [contractTokenFarm, setContractTokenFarm] = useState(undefined);
+  const [daiName, setDaiName] = useState("");
 
   useEffect(() => {
-    const init = async() => {
+    const init = async () => {
       try {
         // Get network provider and web3 instance.
         const web3 = await getWeb3();
@@ -22,19 +26,35 @@ function App() {
         // Get the contract instance.
         const networkId = await web3.eth.net.getId();
         console.log(networkId)
-        const deployedNetwork = SimpleStorageContract.networks[networkId];
-        console.log(deployedNetwork && deployedNetwork.address)
-        const instance = new web3.eth.Contract(
-          SimpleStorageContract.abi,
-          deployedNetwork && deployedNetwork.address,
+        const deployedNetworkDai = DaiToken.networks[networkId];
+        console.log(deployedNetworkDai && deployedNetworkDai.address)
+        const deployedNetworkMeto = MetoToken.networks[networkId];
+        console.log(deployedNetworkMeto && deployedNetworkMeto.address)
+        const deployedNetworkTokenFarm = TokenFarm.networks[networkId];
+        console.log(deployedNetworkTokenFarm && deployedNetworkTokenFarm.address)
+        const instanceDai = new web3.eth.Contract(
+          DaiToken.abi,
+          deployedNetworkDai && deployedNetworkDai.address,
         );
+        const instanceMeto = new web3.eth.Contract(
+          MetoToken.abi,
+          deployedNetworkMeto && deployedNetworkMeto.address,
+        );
+
+        const instanceTokenFarm = new web3.eth.Contract(
+          TokenFarm.abi,
+          deployedNetworkTokenFarm && deployedNetworkTokenFarm.address,
+        );
+
 
         // Set web3, accounts, and contract to the state, and then proceed with an
         // example of interacting with the contract's methods.
         //this.setState({ web3, accounts, contract: instance }, this.runExample);
         setWeb3(web3);
         setAccounts(accounts);
-        setContract(instance);
+        setContractDai(instanceDai);
+        setContractMeto(instanceMeto);
+        setContractTokenFarm(instanceTokenFarm);
       } catch (error) {
         // Catch any errors for any of the above operations.
         alert(
@@ -47,41 +67,31 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const load = async() => {
+    const load = async () => {
       // Stores a given value, 5 by default.
       console.log(accounts[0]);
-      await contract.methods.set(10).send({ from: accounts[0] });
+      //await contract.methods.set(10).send({ from: accounts[0] });
 
       // Get the value from the contract to prove it worked.
-      const response = await contract.methods.get().call();
+      const response = await contractDai.methods.name().call();
 
       // Update state with the result.
-      setStorageValue(response);
+      setDaiName(response);
     }
-    if(typeof web3 !== 'undefined' && typeof accounts !== 'undefined' && typeof contract !== 'undefined') {
+    if (typeof web3 !== 'undefined' && typeof accounts !== 'undefined' && typeof contractDai !== 'undefined' && typeof contractMeto !== 'undefined'
+      && typeof contractTokenFarm !== 'undefined') {
       load();
     }
-  }, [web3, accounts, contract]);
+  }, [web3, accounts, contractDai, contractTokenFarm, contractMeto]);
 
-    if (typeof web3 === undefined) {
-      return <div>Loading Web3, accounts, and contract...</div>;
-    }
-    return (
-      <div className="App">
-        <h1>Good to Go!</h1>
-        <p>Your Truffle Box is installed and ready.</p>
-        <h2>Smart Contract Example</h2>
-        <p>
-          If your contracts compiled and migrated successfully, below will show
-          a stored value of 5 (by default).
-        </p>
-        <p>
-          Try changing the value stored on <strong>line 40</strong> of App.js.
-        </p>
-        <div>The stored value is: {storageValue}</div>
-      </div>
-    );
-  
+  if (typeof web3 === undefined) {
+    return <div>Loading Web3, accounts, and contract...</div>;
+  }
+  return (
+    <div className="App">
+      <p>The DAI Token name is: {daiName}</p>
+    </div>
+  );
 }
 
 export default App;
