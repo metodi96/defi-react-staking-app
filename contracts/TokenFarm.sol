@@ -1,12 +1,12 @@
 // SPDX-License-Identifier: MIT
-pragma solidity >= 0.7.0 <=0.7.5;
-import "./MetoTokenV2Farm.sol";
+pragma solidity 0.8.1;
+import "./MetoToken.sol";
 import "./DaiToken.sol";
 
 contract TokenFarm {
     string public name = "Token Farm";
     address public owner;
-    MetoTokenV2Farm public metoTokenV2;
+    MetoToken public metoToken;
     DaiToken public daiToken;
 
     mapping(address => uint256) public stakingBalance;
@@ -19,9 +19,9 @@ contract TokenFarm {
     event Withdrawn(address by, uint256 amount);
     event Issued(address to, uint256 amount);
 
-    constructor(MetoTokenV2Farm _metoTokenV2, DaiToken _daiToken) {
+    constructor(MetoToken _metoToken, DaiToken _daiToken) {
         //in order to use them in other functions
-        metoTokenV2 = _metoTokenV2;
+        metoToken = _metoToken;
         daiToken = _daiToken;
         owner = msg.sender;
     }
@@ -36,7 +36,6 @@ contract TokenFarm {
     }
 
     //stake tokens - investor puts money into the app (deposit)
-
     function stakeTokens(uint256 _amount) public {
         require(_amount > 0, "Amount cannot be 0");
         //transfer mock dai tokens to this contract for staking
@@ -94,7 +93,7 @@ contract TokenFarm {
         //issue tokens which are the same amount as the tokens the user has staked
         for (uint256 i = 0; i < stakers.length; i++) {
             if (stakingBalance[stakers[i]] > 0 ) {
-                metoTokenV2.transfer(stakers[i], stakingBalance[stakers[i]]);
+                metoToken.transfer(stakers[i], stakingBalance[stakers[i]]);
                 emit Issued(stakers[i], stakingBalance[stakers[i]]);
             }
         }

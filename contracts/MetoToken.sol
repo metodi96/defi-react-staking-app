@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: MIT
-pragma solidity >= 0.7.0 <=0.7.5;
+pragma solidity 0.8.1;
 
 contract MetoToken {
     string public name = 'Meto Token';
     string public symbol = 'MT';
     string public standard = 'Meto Token v1.0';
-    uint256 public totalSupply = 10000000;
+    uint256 public totalSupply = 1000000000000000000000000;
     mapping (address => uint) public balanceOf;
     mapping (address => mapping(address => uint256)) public allowance;
 

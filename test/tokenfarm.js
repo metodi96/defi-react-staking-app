@@ -1,24 +1,20 @@
 const { assert } = require('chai');
-
-const MetoTokenV2Farm = artifacts.require("MetoTokenV2Farm");
+const { tokens } = require('../utils/tokens')
+const MetoToken = artifacts.require("MetoToken");
 const DaiToken = artifacts.require("DaiToken");
 const TokenFarm = artifacts.require("TokenFarm");
-const truffleAssert = require('truffle-assertions');
+const truffleAssert = require('truffle-assertions')
 
 require('chai')
     .use(require('chai-as-promised'))
     .should()
-
-const tokens = (n) => {
-    return web3.utils.toWei(n, 'ether');
-}
 
 //break down accounts to owner and investor
 contract('TokenFarm', ([owner, investor]) => {
     let daiToken, metoToken, tokenFarm;
     before(async () => {
         daiToken = await DaiToken.new()
-        metoToken = await MetoTokenV2Farm.new()
+        metoToken = await MetoToken.new()
         tokenFarm = await TokenFarm.new(metoToken.address, daiToken.address)
 
         //transfer all meto tokens to the token farm
@@ -38,7 +34,7 @@ contract('TokenFarm', ([owner, investor]) => {
     describe('Meto Token', async () => {
         it('has a name', async () => {
             const name = await metoToken.name();
-            assert.equal(name, 'Meto Token Farm')
+            assert.equal(name, 'Meto Token')
         })
     })
 
@@ -118,7 +114,7 @@ contract('TokenFarm', ([owner, investor]) => {
 
             result = await metoToken.balanceOf(investor)
             assert.equal(result.toString(), tokens('0'), 'investor Meto Token wallet balance correct before being issued the new tokens')
-            
+
             //only the owner can issue so this must fail
             await truffleAssert.reverts(tokenFarm.issueTokens({ from: investor }));
 
@@ -143,7 +139,7 @@ contract('TokenFarm', ([owner, investor]) => {
             // Check investor balance before staking
             result = await metoToken.balanceOf(investor)
             assert.equal(result.toString(), tokens('100'), 'investor should be in possession of the metoTokens')
-            
+
             result = await daiToken.balanceOf(investor)
             assert.equal(result.toString(), tokens('0'), 'investor should have 0 dai tokens')
 
