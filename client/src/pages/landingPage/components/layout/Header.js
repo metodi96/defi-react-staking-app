@@ -7,6 +7,12 @@ import '../../assets/scss/landingPage.scoped.scss';
 import { handleConnect, handleInstall } from '../../../../utils/metamask'
 import AppContext from '../../../../appContext'
 import etherImg from '../../assets/images/ether-wallet.png'
+import daiTokenImg from '../../assets/images/dai.png'
+import metoTokenImg from '../../assets/images/metotoken.png'
+import {
+  checkDaiTokensFor,
+  checkMetoTokensFor
+} from '../../../../utils/assets'
 
 const propTypes = {
   navPosition: PropTypes.string,
@@ -34,12 +40,15 @@ const Header = ({
   ...props
 }) => {
 
-  const { account, hasWalletAddress } = useContext(AppContext);
+  const { account, hasWalletAddress, web3 } = useContext(AppContext);
 
   const [isActive, setIsactive] = useState(false);
 
   const nav = useRef(null);
   const hamburger = useRef(null);
+
+  const [daiTokens, setDaiTokens] = useState(0)
+  const [metoTokens, setMetoTokens] = useState(0)
 
   useEffect(() => {
     isActive && openMenu();
@@ -51,6 +60,16 @@ const Header = ({
       closeMenu();
     };
   });
+
+  useEffect(() => {
+    (async () => {
+      //it could happen that account is empty when this useEffect runs initially, hence the guard
+      if (account) {
+        setMetoTokens(await checkMetoTokensFor(web3, account));
+        setDaiTokens(await checkDaiTokensFor(web3, account));
+      }
+    })();
+  }, [account, web3]);
 
   const openMenu = () => {
     document.body.classList.add('off-nav-is-active');
@@ -147,6 +166,36 @@ const Header = ({
                       {/*<Link to="/dashboard" className="button button-primary button-wide-mobile button-sm" onClick={closeMenu}>Go to App</Link>*/}
                     </li>
                   </ul>
+                  {account &&
+                    <ul className="list-reset header-nav-right">
+                      <li>
+                        <Popup content='Meto token balance' trigger={
+                          <div rel="noopener noreferrer" className='metamask-wallet'>
+                            <Image src={metoTokenImg} size='mini'
+                              style={{ marginRight: '5px', verticalAlign: 'middle' }}
+                            />
+                            <span style={{ wordBreak: 'break-all', color: '#dadada !important', fontSize: '0.9em', lineHeight: '1.5em', }}>
+                              tokens: <b>{metoTokens}</b>
+                            </span>
+                          </div>
+                        } />
+                        {/*<Link to="/dashboard" className="button button-primary button-wide-mobile button-sm" onClick={closeMenu}>Go to App</Link>*/}
+                      </li>
+                      <li>
+                        <Popup content='Dai token balance' trigger={
+                          <div rel="noopener noreferrer" className='metamask-wallet'>
+                            <Image src={daiTokenImg} size='mini'
+                              style={{ marginRight: '5px', verticalAlign: 'middle' }}
+                            />
+                            <span style={{ wordBreak: 'break-all', color: '#dadada !important', fontSize: '0.9em', lineHeight: '1.5em', }}>
+                              tokens: <b>{daiTokens}</b>
+                            </span>
+                          </div>
+                        } />
+                        {/*<Link to="/dashboard" className="button button-primary button-wide-mobile button-sm" onClick={closeMenu}>Go to App</Link>*/}
+                      </li>
+                    </ul>
+                  }
                 </div>
               </nav>
             </>}

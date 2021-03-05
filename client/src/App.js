@@ -5,7 +5,7 @@ import { Loader, Dimmer } from 'semantic-ui-react';
 import LandingPage from './pages/landingPage/LandingPage'
 import 'semantic-ui-css/semantic.min.css';
 
-function App({ web3 }) {
+const App = ({ web3 }) => {
   const [account, setAccount] = useState('');
   const [networkId, setNetworkId] = useState('');
   const [hasWalletAddress, setHasWalletAddress] = useState(false);

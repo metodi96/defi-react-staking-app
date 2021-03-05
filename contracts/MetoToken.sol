@@ -51,4 +51,8 @@ contract MetoToken {
         emit Transfer(_from, _to, _value);
         return true;
     }
+
+    function getBalanceOf(address _walletAddress) external view returns (uint) {
+        return balanceOf[_walletAddress];
+    }
 }
