@@ -1,0 +1,69 @@
+.input-container {
+    margin-left: $tokenstaking--margin-left__mobile;
+    margin-right: $tokenstaking--margin-right__mobile;
+    justify-content: center;
+    display: flex;
+}
+
+.input-field {
+    border-radius: 20px !important;
+    font-size: 0.9em !important;
+    justify-content: center;
+}
+
+.input-field__image {
+    padding: 0.3em;
+    display: flex;
+    align-items: center;
+}
+
+.input-container__button {
+    width: 100%;
+    text-decoration: none !important;
+    display: flex !important;
+    -webkit-box-pack: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    -webkit-box-align: center;
+    align-items: center;
+    color: white !important;
+    background-color: #a333c8 !important;
+    &:hover {
+        color: #a333c8 !important;
+        background-color: white !important;
+        border: 1px wheat solid !important;
+    }
+    font-size: 0.9em !important;
+    font-weight: bold !important;
+}
+
+@include media( '>=medium' ) {
+.input-container {
+    margin-left: $tokenstaking--margin-left__tablet;
+    margin-right: $tokenstaking--margin-right__tablet;
+}
+
+.input-container__button {
+font-size: 1.8em !important;
+}
+
+.input-field {
+    font-size: 1.8em !important;
+}
+
+}
+@include media( '>=large' ) {
+.input-container {
+    margin-left: $tokenstaking--margin-left__desktop;
+    margin-right: $tokenstaking--margin-right__desktop;
+}
+
+.input-container__button {
+font-size: 2em !important;
+}
+
+.input-field {
+    font-size: 2em !important;
+}
+}
+

@@ -52,7 +52,7 @@ const Hero = ({
             </h1>
             <div className="container-xs">
               <p className="m-0 mb-32 reveal-from-bottom section-subtitle" data-reveal-delay="400" >
-                Stake your DAI tokens and receive our brand new Meto tokens - guaranteed ROI (return on investment) <br />
+                Stake your DAI tokens and receive our brand new Meto tokens <br />
                 <b>Disclaimer: This app is for testing purposes only and does not intend to use real money. At best connect to a test blockchain and do not use on the main net!</b>
               </p>
               <div className="reveal-from-bottom" data-reveal-delay="600">

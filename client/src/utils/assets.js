@@ -34,3 +34,7 @@ export const checkMetoTokensFor = async (web3, account) => {
     const metoTokensOfWalletAddress = await metoContract.methods.getBalanceOf(account).call();
     return metoTokensOfWalletAddress
 }
+
+export const convertToTokens = (n, web3) => {
+    return web3.utils.fromWei(n, 'ether');
+}

@@ -11,7 +11,8 @@ import daiTokenImg from '../../assets/images/dai.png'
 import metoTokenImg from '../../assets/images/metotoken.png'
 import {
   checkDaiTokensFor,
-  checkMetoTokensFor
+  checkMetoTokensFor,
+  convertToTokens
 } from '../../../../utils/assets'
 
 const propTypes = {
@@ -65,8 +66,10 @@ const Header = ({
     (async () => {
       //it could happen that account is empty when this useEffect runs initially, hence the guard
       if (account) {
-        setMetoTokens(await checkMetoTokensFor(web3, account));
-        setDaiTokens(await checkDaiTokensFor(web3, account));
+        const metoTokens = await checkMetoTokensFor(web3, account)
+        const daiTokens = await checkDaiTokensFor(web3, account)
+        setMetoTokens(convertToTokens(metoTokens, web3));
+        setDaiTokens(convertToTokens(daiTokens, web3));
       }
     })();
   }, [account, web3]);

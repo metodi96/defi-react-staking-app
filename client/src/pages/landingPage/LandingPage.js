@@ -18,8 +18,6 @@ const LandingPage = () => {
     let location = useLocation();
     const Layout = (LayoutDefault === undefined) ? props => (<>{props.children}</>) : LayoutDefault;
 
-
-
     useEffect(() => {
         document.body.classList.add('is-loaded');
         childRef.current.init();

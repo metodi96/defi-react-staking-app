@@ -55,14 +55,6 @@ const App = ({ web3 }) => {
     }}
     >
       <Route path='/' exact component={LandingPage} />
-      {/*<Route path="/registry/add" exact render={props => {
-                return (
-                  <RegistryAdd {...props}
-                    handleBlockScreen={handleBlockScreen}
-                    selectedAccount={account}
-                  />
-                );
-       }} />*/}
       <Dimmer active={screenBlocked} style={{ zIndex: '9999' }}>
         {screenBlocked && <Loader indeterminate content='Waiting for transaction to finish...' />}
       </Dimmer>

@@ -78,7 +78,7 @@ const FeaturesTiles = ({
                 <div className="features-tiles-item-header">
                   <div className="features-tiles-item-image mb-16">
                     <Image
-                      src={images[2]}
+                      src={typeof images[2] !== 'undefined' ? images[2] : ''}
                       alt="Features tile icon 01"
                       width={64}
                       height={64} />
@@ -100,7 +100,7 @@ const FeaturesTiles = ({
                 <div className="features-tiles-item-header">
                   <div className="features-tiles-item-image mb-16">
                     <Image
-                      src={images[1]}
+                      src={typeof images[1] !== 'undefined' ? images[1] : ''}
                       alt="Features tile icon 02"
                       width={64}
                       height={64} />
@@ -122,7 +122,7 @@ const FeaturesTiles = ({
                 <div className="features-tiles-item-header">
                   <div className="features-tiles-item-image mb-16">
                     <Image
-                      src={images[0]}
+                      src={typeof images[0] !== 'undefined' ? images[0] : ''}
                       alt="Features tile icon 03"
                       width={64}
                       height={64} />
@@ -144,7 +144,7 @@ const FeaturesTiles = ({
                 <div className="features-tiles-item-header">
                   <div className="features-tiles-item-image mb-16">
                     <Image
-                      src={images[3]}
+                      src={typeof images[3] !== 'undefined' ? images[3] : ''}
                       alt="Features tile icon 04"
                       width={64}
                       height={64} />
@@ -166,7 +166,7 @@ const FeaturesTiles = ({
                 <div className="features-tiles-item-header">
                   <div className="features-tiles-item-image mb-16">
                     <Image
-                      src={images[4]}
+                      src={typeof images[4] !== 'undefined' ? images[4] : ''}
                       alt="Features tile icon 05"
                       width={64}
                       height={64} />
@@ -188,7 +188,7 @@ const FeaturesTiles = ({
                 <div className="features-tiles-item-header">
                   <div className="features-tiles-item-image mb-16">
                     <Image
-                      src={images[5]}
+                      src={typeof images[5] !== 'undefined' ? images[5] : ''}
                       alt="Features tile icon 06"
                       width={64}
                       height={64} />
