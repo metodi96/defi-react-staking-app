@@ -1,0 +1,81 @@
+.ui.basic.primary.button,
+.ui.basic.primary.buttons .button {
+    &:hover {
+        background-color: $blue !important;
+        color: #fff !important;
+        text-shadow: none;
+        box-shadow: none !important;
+    }
+}
+
+.ui.basic.blue.button,
+.ui.basic.blue.buttons .button {
+    &:hover {
+        background-color: $blue !important;
+        color: #fff !important;
+        text-shadow: none;
+        box-shadow: none !important;
+    }
+}
+
+
+.ui.basic.pink.button,
+.ui.basic.pink.buttons .button {
+    &:hover {
+        background-color: $pink !important;
+        color: #fff !important;
+        text-shadow: none;
+        box-shadow: none !important;
+    }
+}
+
+.ui.basic.teal.button,
+.ui.basic.teal.buttons .button {
+    &:hover {
+        background-color: $teal !important;
+        color: #fff !important;
+        text-shadow: none;
+        box-shadow: none !important;
+        font-weight: bold;
+    }
+}
+
+.ui.basic.purple.button,
+.ui.basic.purple.buttons .button {
+    &:hover {
+        background-color: $purple !important;
+        color: #fff !important;
+        text-shadow: none;
+        box-shadow: none !important;
+    }
+}
+
+.ui.basic.red.button,
+.ui.basic.red.buttons .button {
+    &:hover {
+        background-color: $red !important;
+        color: #fff !important;
+        text-shadow: none;
+        box-shadow: none !important;
+    }
+}
+
+.ui.basic.green.button,
+.ui.basic.green.buttons .button {
+    &:hover {
+        background-color: $green !important;
+        color: #fff !important;
+        text-shadow: none;
+        box-shadow: none !important;
+    }
+}
+
+.ui.basic.positive.button,
+.ui.basic.positive.buttons .button {
+    &:hover {
+        background-color: $green !important;
+        color: #fff !important;
+        text-shadow: none;
+        box-shadow: none !important;
+    }
+}

@@ -1,0 +1,10 @@
+.navbar {
+  margin-bottom: 0;
+  border-radius: 0px;
+  height: $navbar-height;
+
+  .navbar--menu {
+    // background: linear-gradient(white 40%, $page-bg-color, #fff2ea);
+    background: linear-gradient(white 40%, $page-bg-color, white 40%);
+  }
+}
