@@ -9,7 +9,7 @@
 > truffle migrate --reset
 --------------------------------------------
 ### Step 3: Inside another terminal window in the project do:
-> cd client
+> cd client <br>
 > npm install
 ### Step 4:
 > npm run start 
