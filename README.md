@@ -10,5 +10,6 @@
 --------------------------------------------
 ### Step 3: Inside another terminal window in the project do:
 > cd client
+> npm install
 ### Step 4:
 > npm run start 
