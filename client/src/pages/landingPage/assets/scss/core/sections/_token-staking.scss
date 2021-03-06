@@ -15,7 +15,6 @@
 .input-field {
     border-radius: 20px !important;
     font-size: 0.9em !important;
-    justify-content: center;
 }
 
 .input-field__input {
@@ -26,8 +25,6 @@
 .input-field__image {
     padding: 0.3em;
     display: flex;
-    align-items: center;
-    margin: 0 !important;
 }
 
 .input-container__button {
@@ -46,7 +43,7 @@
         background-color: white !important;
         border: 1px wheat solid !important;
     }
-    font-size: 0.9em !important;
+    font-size: 0.85em !important;
     font-weight: bold !important;
 }
 
@@ -59,16 +56,16 @@
     color: #a333c8
 }
 
-.dai-label-and-image {
-    display: grid !important;
-    grid-template-columns: repeat(1, 1fr);
-}
-
 @include media( '<medium' ) {
-.dai-label-and-image {
-   
-    margin: 0 !important
-}
+    .dai-label-and-image {
+        display: grid !important;
+        grid-template-columns: repeat(1, 1fr);
+        margin: 0 !important;
+    }
+
+    .input-field__image {
+        margin: 0 !important;
+    }
 }
 
 @include media( '>=medium' ) {
@@ -78,15 +75,15 @@
 }
 
 .input-container__button {
-font-size: 1.8em !important;
+font-size: 1.3em !important;
 }
 
 .input-field {
-    font-size: 1.8em !important;
+    font-size: 1.9em !important;
 }
 
 .input-field__input {
-    height: 5em;
+    height: 2.7em !important;
     width: 5em
 }
 
@@ -96,6 +93,11 @@ font-size: 1.8em !important;
 
 .input-container__form {
    width: 30em
+}
+
+.dai-label-and-image {
+    height: 2.7em !important;
+    display:table-cell; vertical-align:middle; text-align:center
 }
 
 }
@@ -114,7 +116,7 @@ font-size: 1.8em !important;
 }
 
 .input-field__input {
-    height: 5em;
+    height: 3em !important;
     width: 5em
 }
 
@@ -124,6 +126,10 @@ font-size: 1.8em !important;
 
 .input-container__form {
    width: 50em
+}
+
+.dai-label-and-image {
+    height: 3em !important
 }
 
 }
