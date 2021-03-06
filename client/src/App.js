@@ -4,7 +4,8 @@ import AppContext from './appContext';
 import { Loader, Dimmer } from 'semantic-ui-react';
 import LandingPage from './pages/landingPage/LandingPage'
 import 'semantic-ui-css/semantic.min.css';
-
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 const App = ({ web3 }) => {
   const [account, setAccount] = useState('');
   const [networkId, setNetworkId] = useState('');
@@ -55,6 +56,7 @@ const App = ({ web3 }) => {
     }}
     >
       <Route path='/' exact component={LandingPage} />
+      <ToastContainer autoClose={10000} />
       <Dimmer active={screenBlocked} style={{ zIndex: '9999' }}>
         {screenBlocked && <Loader indeterminate content='Waiting for transaction to finish...' />}
       </Dimmer>

@@ -12,7 +12,7 @@ const Home = () => {
     <>
       <Hero className="illustration-section-01" />
       <TokenStaking />
-      <FeaturesTiles />  
+      <FeaturesTiles />
     </>
   );
 }

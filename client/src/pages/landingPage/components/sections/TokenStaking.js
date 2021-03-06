@@ -4,14 +4,23 @@ import AppContext from '../../../../appContext'
 import {
     getStakersNumber
 } from '../../../../utils/tokenstaking'
+import {
+    getTokenFarmContractInstance,
+    getDaiTokenContractInstance,
+    convertToWei
+} from '../../../../utils/assets'
 import daiImg from '../../assets/images/dai.png'
+import { toast } from 'react-toastify';
 
 function TokenStaking() {
     const [stakersNumber, setStakerNumber] = useState(0)
     const [stakedTokens, setStakedTokens] = useState('')
+    const [tokenFarmContract, setTokenFarmContract] = useState(undefined)
+    const [daiTokenContract, setDaiTokenContract] = useState(undefined)
     const [isDisabled, setIsDisabled] = useState(true)
     const regExFloatStrict = /^([0-9]*[.])?[0-9]+$/;
-    const { web3 } = useContext(AppContext);
+    const { web3, account } = useContext(AppContext);
+
     useEffect(() => {
         (async () => {
             setStakerNumber(await getStakersNumber(web3))
@@ -21,6 +30,11 @@ function TokenStaking() {
         })();
     }, [web3, regExFloatStrict, stakedTokens]);
 
+    useEffect(() => {
+        setTokenFarmContract(getTokenFarmContractInstance(web3))
+        setDaiTokenContract(getDaiTokenContractInstance(web3))
+    }, [web3])
+
     const handleInput = (e, { value }) => {
         //1231. is valid at this point - we would cover this case on submit!
         const regExFloatNotStrict = /^([0-9]*[.])?([0-9]?)+$/;
@@ -29,8 +43,36 @@ function TokenStaking() {
         }
     }
 
-    const handleSubmit = () => {
-        console.log('User has staked ', stakedTokens, ' DAI tokens')
+    const handleSubmit = async () => {
+        const stakedAmountInWei = convertToWei(stakedTokens, web3)
+        try {
+            await daiTokenContract.methods.approve(tokenFarmContract._address, stakedAmountInWei).send({ from: account, gas: '2000000' }).on('receipt', async (txReceiptApproved) => {
+                await tokenFarmContract.methods.stakeTokens(stakedAmountInWei).send({ from: account, gas: '2000000' })
+                    .on('receipt', async (txReceiptStaked) => {
+                        toast.success(`Successfully staked! You paid ${(txReceiptApproved.gasUsed * web3.utils.fromWei((await web3.eth.getGasPrice()), 'ether')).toFixed(5)} ether for the approval
+                                and ${(txReceiptStaked.gasUsed * web3.utils.fromWei((await web3.eth.getGasPrice()), 'ether')).toFixed(5)} ether for the staking.`, {
+                            position: "top-right",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                        });
+                    })
+            })
+
+        } catch (err) {
+            toast.error('Could not stake. Either tx cancelled or something went wrong with the staking.', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            })
+        }
     }
 
     return (

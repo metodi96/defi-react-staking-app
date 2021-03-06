@@ -38,3 +38,7 @@ export const checkMetoTokensFor = async (web3, account) => {
 export const convertToTokens = (n, web3) => {
     return web3.utils.fromWei(n, 'ether');
 }
+
+export const convertToWei = (n, web3) => {
+    return web3.utils.toWei(n, 'ether');
+}
