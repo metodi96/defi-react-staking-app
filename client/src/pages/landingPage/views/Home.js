@@ -10,7 +10,7 @@ const Home = ({ handleTokensChange }) => {
 
   return (
     <>
-      <Hero className="illustration-section-01" />
+      <Hero />
       <TokenStaking handleTokensChange={handleTokensChange} />
       <FeaturesTiles />
     </>

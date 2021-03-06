@@ -5,7 +5,7 @@ import Image from '../../elements/Image';
 
 import '../../../assets/scss/landingPage.scoped.scss';
 // import logo from '../../../assets/images/logo.svg'
-import logo from '../../../../../static/images/react.png'
+import logo from '../../../assets/images/react.png'
 
 const Logo = ({
   className,
