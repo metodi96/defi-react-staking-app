@@ -9,11 +9,6 @@ import AppContext from '../../../../appContext'
 import etherImg from '../../assets/images/ether-wallet.png'
 import daiTokenImg from '../../assets/images/dai.png'
 import metoTokenImg from '../../assets/images/metotoken.png'
-import {
-  checkDaiTokensFor,
-  checkMetoTokensFor,
-  convertToTokens
-} from '../../../../utils/assets'
 
 const propTypes = {
   navPosition: PropTypes.string,
@@ -38,18 +33,17 @@ const Header = ({
   hideSignin,
   bottomOuterDivider,
   bottomDivider,
+  metoTokens,
+  daiTokens,
   ...props
 }) => {
 
-  const { account, hasWalletAddress, web3 } = useContext(AppContext);
+  const { account, hasWalletAddress } = useContext(AppContext);
 
   const [isActive, setIsactive] = useState(false);
 
   const nav = useRef(null);
   const hamburger = useRef(null);
-
-  const [daiTokens, setDaiTokens] = useState(0)
-  const [metoTokens, setMetoTokens] = useState(0)
 
   useEffect(() => {
     isActive && openMenu();
@@ -61,18 +55,6 @@ const Header = ({
       closeMenu();
     };
   });
-
-  useEffect(() => {
-    (async () => {
-      //it could happen that account is empty when this useEffect runs initially, hence the guard
-      if (account) {
-        const metoTokens = await checkMetoTokensFor(web3, account)
-        const daiTokens = await checkDaiTokensFor(web3, account)
-        setMetoTokens(convertToTokens(metoTokens, web3));
-        setDaiTokens(convertToTokens(daiTokens, web3));
-      }
-    })();
-  }, [account, web3]);
 
   const openMenu = () => {
     document.body.classList.add('off-nav-is-active');

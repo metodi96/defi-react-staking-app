@@ -6,12 +6,12 @@ import TokenStaking from '../components/sections/TokenStaking'
 import '../assets/scss/landingPage.scoped.scss';
 
 
-const Home = () => {
+const Home = ({ handleTokensChange }) => {
 
   return (
     <>
       <Hero className="illustration-section-01" />
-      <TokenStaking />
+      <TokenStaking handleTokensChange={handleTokensChange} />
       <FeaturesTiles />
     </>
   );

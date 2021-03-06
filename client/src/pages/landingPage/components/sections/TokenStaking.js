@@ -12,7 +12,7 @@ import {
 import daiImg from '../../assets/images/dai.png'
 import { toast } from 'react-toastify';
 
-function TokenStaking() {
+function TokenStaking({ handleTokensChange }) {
     const [stakersNumber, setStakerNumber] = useState(0)
     const [stakingBalance, setStakingBalance] = useState(0)
     const [stakedTokens, setStakedTokens] = useState('')
@@ -53,6 +53,7 @@ function TokenStaking() {
                 await tokenFarmContract.methods.stakeTokens(stakedAmountInWei).send({ from: account, gas: '2000000' })
                     .on('receipt', async (txReceiptStaked) => {
                         handleBlockScreen(false)
+                        handleTokensChange()
                         toast.success(`Successfully staked! You paid ${(txReceiptApproved.gasUsed * web3.utils.fromWei((await web3.eth.getGasPrice()), 'ether')).toFixed(5)} ether for the approval
                                 and ${(txReceiptStaked.gasUsed * web3.utils.fromWei((await web3.eth.getGasPrice()), 'ether')).toFixed(5)} ether for the staking.`, {
                             position: "top-right",
@@ -84,19 +85,20 @@ function TokenStaking() {
         handleBlockScreen(true)
         const stakedAmountInWei = convertToWei(stakedTokens, web3)
         try {
-                await tokenFarmContract.methods.withdrawTokens(stakedAmountInWei).send({ from: account, gas: '2000000' })
-                    .on('receipt', async (txReceiptWithdrawn) => {
-                        handleBlockScreen(false)
-                        toast.success(`Successfully unstaked ${stakedTokens} tokens! You paid ${(txReceiptWithdrawn.gasUsed * web3.utils.fromWei((await web3.eth.getGasPrice()), 'ether')).toFixed(5)} ether for the withdrawing.`, {
-                            position: "top-right",
-                            autoClose: 5000,
-                            hideProgressBar: false,
-                            closeOnClick: true,
-                            pauseOnHover: true,
-                            draggable: true,
-                            progress: undefined,
-                        });
-                    })
+            await tokenFarmContract.methods.withdrawTokens(stakedAmountInWei).send({ from: account, gas: '2000000' })
+                .on('receipt', async (txReceiptWithdrawn) => {
+                    handleBlockScreen(false)
+                    handleTokensChange()
+                    toast.success(`Successfully unstaked ${stakedTokens} tokens! You paid ${(txReceiptWithdrawn.gasUsed * web3.utils.fromWei((await web3.eth.getGasPrice()), 'ether')).toFixed(5)} ether for the withdrawing.`, {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });
+                })
         } catch (err) {
             handleBlockScreen(false)
             toast.error('Could not withdraw. Either tx cancelled or something went wrong with the withdrawing.', {
@@ -135,7 +137,7 @@ function TokenStaking() {
                             <Label basic image className='dai-label-and-image'><Image src={daiImg} className='input-field__image' /><span className='dai-label'>DAI</span></Label>
                         </Form.Input>
                         <Button disabled={isDisabled} className='input-container__button' onClick={handleSubmitStake}>Stake DAI tokens</Button>
-                        <Button disabled={isDisabled} className='input-container__button' style={{marginTop: '1em'}} onClick={handleSubmitWithdraw}>Withdraw DAI tokens</Button>
+                        <Button disabled={isDisabled} className='input-container__button' style={{ marginTop: '1em' }} onClick={handleSubmitWithdraw}>Withdraw DAI tokens</Button>
                     </Form>
                 </div>
             </div>
