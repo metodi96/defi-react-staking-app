@@ -91,13 +91,14 @@
 }
 
 .button-primary {
-	color: color(button-primary);
+	color: white;
     background-color: color-bg(button-primary);
 	border-color: color-border(button-primary);
 
     &:hover {
-        background-color: color-bg(button-primary-hover);
-		border-color: color-border(button-primary-hover);
+        background-color: white;
+		color: color-bg(button-primary);
+		border-color: wheat;
     }
 
 	&.is-loading {

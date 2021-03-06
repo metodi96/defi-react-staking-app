@@ -116,7 +116,6 @@ const Header = ({
     <header
       {...props}
       className={classes}
-    // style={{background: '#1B2428'}}
     >
       <div className="container">
         <div className={
@@ -145,57 +144,45 @@ const Header = ({
                     isActive && 'is-active'
                   )}>
                 <div className="header-nav-inner">
-                  {/*<ul className={
-                    classNames(
-                      'list-reset text-xs',
-                      navPosition && `header-nav-${navPosition}`
-                    )}>
-                    <li>
-                      <Link to="#0" onClick={closeMenu}>Documentation</Link>
-                    </li>
-                  </ul>*/}
                   <ul className="list-reset header-nav-right">
                     <li>
-                      <Popup content='Wallet address' trigger={
-                        <div rel="noopener noreferrer" className='metamask-wallet'>
-                          <Image src={etherImg} size='mini'
-                            style={{ marginRight: '5px', verticalAlign: 'middle' }}
-                          />
-                          <span style={{ wordBreak: 'break-all', color: '#dadada !important', fontSize: '0.9em', lineHeight: '1.5em', }}>
+
+                      <div rel="noopener noreferrer" className='metamask-wallet'>
+                        <Image src={etherImg} size='mini'
+                          style={{ marginRight: '5px', verticalAlign: 'middle' }}
+                        />
+                        <span style={{ wordBreak: 'break-all', color: '#dadada !important', fontSize: '0.9em', lineHeight: '1.5em', }}>
+                          <Popup content='Wallet address' trigger={
                             <b>{renderMetaMaskLabel()}</b>
-                          </span>
-                        </div>
-                      } />
-                      {/*<Link to="/dashboard" className="button button-primary button-wide-mobile button-sm" onClick={closeMenu}>Go to App</Link>*/}
+                          } />
+                        </span>
+                      </div>
                     </li>
                   </ul>
                   {account &&
                     <ul className="list-reset header-nav-right">
                       <li>
-                        <Popup content='Meto token balance' trigger={
-                          <div rel="noopener noreferrer" className='metamask-wallet'>
-                            <Image src={metoTokenImg} size='mini'
-                              style={{ marginRight: '5px', verticalAlign: 'middle' }}
-                            />
+                        <div rel="noopener noreferrer" className='metamask-wallet'>
+                          <Image src={metoTokenImg} size='mini'
+                            style={{ marginRight: '5px', verticalAlign: 'middle' }}
+                          />
+                          <Popup content='Meto token balance' trigger={
                             <span style={{ wordBreak: 'break-all', color: '#dadada !important', fontSize: '0.9em', lineHeight: '1.5em', }}>
                               tokens: <b>{metoTokens}</b>
-                            </span>
-                          </div>
-                        } />
-                        {/*<Link to="/dashboard" className="button button-primary button-wide-mobile button-sm" onClick={closeMenu}>Go to App</Link>*/}
+                            </span>} />
+                        </div>
                       </li>
                       <li>
-                        <Popup content='Dai token balance' trigger={
-                          <div rel="noopener noreferrer" className='metamask-wallet'>
-                            <Image src={daiTokenImg} size='mini'
-                              style={{ marginRight: '5px', verticalAlign: 'middle' }}
-                            />
+                        <div rel="noopener noreferrer" className='metamask-wallet'>
+                          <Image src={daiTokenImg} size='mini'
+                            style={{ marginRight: '5px', verticalAlign: 'middle' }}
+                          />
+                          <Popup content='Dai token balance' trigger={
                             <span style={{ wordBreak: 'break-all', color: '#dadada !important', fontSize: '0.9em', lineHeight: '1.5em', }}>
                               tokens: <b>{daiTokens}</b>
                             </span>
-                          </div>
-                        } />
-                        {/*<Link to="/dashboard" className="button button-primary button-wide-mobile button-sm" onClick={closeMenu}>Go to App</Link>*/}
+                          } />
+                        </div>
                       </li>
                     </ul>
                   }

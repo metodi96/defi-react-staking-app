@@ -5,16 +5,29 @@
     display: flex;
 }
 
+.input-container__form {
+    padding: 3em !important;
+    border: 1px solid #a333c8;
+    border-radius: 1em;
+    max-width: none !important;
+}
+
 .input-field {
     border-radius: 20px !important;
     font-size: 0.9em !important;
     justify-content: center;
 }
 
+.input-field__input {
+    height: 5em;
+    width: 3em !important
+}
+
 .input-field__image {
     padding: 0.3em;
     display: flex;
     align-items: center;
+    margin: 0 !important;
 }
 
 .input-container__button {
@@ -37,6 +50,27 @@
     font-weight: bold !important;
 }
 
+.staking-stats {
+    font-size: 1.1em;
+    display: grid;
+}
+
+.staking-stats__number {
+    color: #a333c8
+}
+
+.dai-label-and-image {
+    display: grid !important;
+    grid-template-columns: repeat(1, 1fr);
+}
+
+@include media( '<medium' ) {
+.dai-label-and-image {
+   
+    margin: 0 !important
+}
+}
+
 @include media( '>=medium' ) {
 .input-container {
     margin-left: $tokenstaking--margin-left__tablet;
@@ -51,6 +85,19 @@ font-size: 1.8em !important;
     font-size: 1.8em !important;
 }
 
+.input-field__input {
+    height: 5em;
+    width: 5em
+}
+
+.staking-stats {
+    font-size: 1.3em;
+}
+
+.input-container__form {
+   width: 30em
+}
+
 }
 @include media( '>=large' ) {
 .input-container {
@@ -59,11 +106,24 @@ font-size: 1.8em !important;
 }
 
 .input-container__button {
-font-size: 2em !important;
+font-size: 1.8em !important;
 }
 
 .input-field {
-    font-size: 2em !important;
-}
+    font-size: 1.8em !important;
 }
 
+.input-field__input {
+    height: 5em;
+    width: 5em
+}
+
+.staking-stats {
+    font-size: 1.6em;
+}
+
+.input-container__form {
+   width: 50em
+}
+
+}

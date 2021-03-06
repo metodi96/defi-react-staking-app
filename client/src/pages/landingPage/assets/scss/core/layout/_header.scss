@@ -156,3 +156,17 @@
   min-width: 2.8em;
   min-height: 2.8em;
 }
+
+.connect-metamask {
+  color: white !important;
+  transition: .1s opacity ease !important;
+  background-color: rgba(0,0,0,0) !important;
+  padding: 0 !important;
+  font-weight: normal !important;
+  word-break: break-word;
+}
+
+.connect-metamask:hover {
+  color:rgba(216, 213, 213, 0.3) !important;
+  background-color: rgba(0,0,0,0) !important;
+}

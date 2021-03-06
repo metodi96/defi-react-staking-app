@@ -57,7 +57,7 @@ const Hero = ({
               </p>
               <div className="reveal-from-bottom" data-reveal-delay="600">
                 <ButtonGroup>
-                  <Button tag="a" color="dark" wideMobile href="https://github.com/metodi96/defi-react-app">
+                  <Button tag="a" className='button-primary' wideMobile href="https://github.com/metodi96/defi-react-app">
                     View on Github
                     </Button>
                 </ButtonGroup>

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Route } from 'react-router-dom';
 import AppContext from './appContext';
-import { Loader, Dimmer } from 'semantic-ui-react';
 import LandingPage from './pages/landingPage/LandingPage'
 import 'semantic-ui-css/semantic.min.css';
 import { ToastContainer } from 'react-toastify'
@@ -21,7 +20,7 @@ const App = ({ web3 }) => {
         setNetworkId(networkId);
         const [selectedAccount] = await web3.eth.getAccounts();
         setAccount(web3.utils.toChecksumAddress(selectedAccount));
-        window.ethereum.on('accountsChanged', function (accounts) {
+        window.ethereum.on('accountsChanged', (accounts) => {
           setHasAccountChanged(true);
           if (!accounts[0]) {
             setHasWalletAddress(false);
@@ -48,6 +47,7 @@ const App = ({ web3 }) => {
     <AppContext.Provider value={{
       web3,
       handleBlockScreen,
+      screenBlocked,
       account,
       hasWalletAddress,
       hasAccountChanged,
@@ -57,9 +57,6 @@ const App = ({ web3 }) => {
     >
       <Route path='/' exact component={LandingPage} />
       <ToastContainer autoClose={10000} />
-      <Dimmer active={screenBlocked} style={{ zIndex: '9999' }}>
-        {screenBlocked && <Loader indeterminate content='Waiting for transaction to finish...' />}
-      </Dimmer>
     </AppContext.Provider>
   );
 }
