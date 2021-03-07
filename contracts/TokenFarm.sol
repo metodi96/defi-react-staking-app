@@ -11,13 +11,12 @@ contract TokenFarm {
 
     mapping(address => uint256) public stakingBalance;
     mapping(address => bool) public hasStaked;
-    mapping(address => bool) public isStaking;
+    mapping(address => uint) public timeOfStakingFor;
 
     address[] public stakers;
 
     event Staked(address by, uint256 amount);
     event Withdrawn(address by, uint256 amount);
-    event Issued(address to, uint256 amount);
 
     constructor(MetoToken _metoToken, DaiToken _daiToken) {
         //in order to use them in other functions
@@ -45,13 +44,15 @@ contract TokenFarm {
         //update staking balance
         stakingBalance[msg.sender] += _amount;
 
+        //update time of staking
+        timeOfStakingFor[msg.sender] = block.timestamp;
+
         // add user to stakers array only if they havent staked already,
         // because later we'd want to give them only once the issued tokens
         if (!hasStaked[msg.sender]) {
             stakers.push(msg.sender);
         }
         //update staking status
-        isStaking[msg.sender] = true;
         hasStaked[msg.sender] = true;
 
         emit Staked(msg.sender, _amount);
@@ -63,15 +64,19 @@ contract TokenFarm {
         require(_amount > 0, "Amount cannot be 0");
         require(_amount <= stakingBalance[msg.sender], "Cannot withdraw more than you have in your staking balance");
         require(hasStaked[msg.sender], "Caller must have staked in order to withdraw something");
-        //transfer mock dai tokens to this contract for staking
+        //allow them to withdraw a week after their latest stake
+        require(timeOfStakingFor[msg.sender] + 1 days <= block.timestamp);
 
+        //transfer mock dai tokens to this contract for staking
         daiToken.transfer(msg.sender, _amount);
+
+        //transfer 5% of the withdrawn amount back in meto tokens
+        metoToken.transfer(msg.sender, (_amount*5)/100);
 
         //update staking balance
         stakingBalance[msg.sender] -= _amount;
 
         //if account has withdrawn everything we need to remove them from the stakers array
-        
         if (stakingBalance[msg.sender] == 0) {
             address[] storage arr = stakers;
             for (uint i=0; i < arr.length; i++) {
@@ -80,22 +85,10 @@ contract TokenFarm {
                     arr.pop();
                     //update staking status
                     hasStaked[msg.sender] = false;
-                    isStaking[msg.sender] = false;
                     break;
                 }
             }
         }
         emit Withdrawn(msg.sender, _amount);
-    }
-
-    //issue tokens
-    function issueTokens() public onlyOwner {
-        //issue tokens which are the same amount as the tokens the user has staked
-        for (uint256 i = 0; i < stakers.length; i++) {
-            if (stakingBalance[stakers[i]] > 0 ) {
-                metoToken.transfer(stakers[i], stakingBalance[stakers[i]]);
-                emit Issued(stakers[i], stakingBalance[stakers[i]]);
-            }
-        }
     }
 }
