@@ -7,9 +7,7 @@
     "test": "test"
   },
   "dependencies": {
-    "@openzeppelin/contracts": "^3.4.0",
-    "chai": "^4.2.0",
-    "chai-as-promised": "^7.1.1",
+    "ganache-time-traveler": "^1.0.15",
     "truffle-assertions": "^0.9.2"
   },
   "devDependencies": {},

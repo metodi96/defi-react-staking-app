@@ -1,14 +1,14 @@
-const { assert } = require('chai');
 const { tokens } = require('../utils/tokens')
 const MetoToken = artifacts.require("MetoToken");
 const DaiToken = artifacts.require("DaiToken");
 const TokenFarm = artifacts.require("TokenFarm");
 const truffleAssert = require('truffle-assertions')
-const { advanceTimeAndBlock, takeSnapshot, revertToSnapShot } = require('./advanceBlockInTime')
+const helper = require('ganache-time-traveler');
+const SECONDS_IN_DAY = 86400;
 
 //break down accounts to owner and investor
 contract('TokenFarm', ([owner, investor]) => {
-    let daiToken, metoToken, tokenFarm, snapShot, snapShotId;
+    let daiToken, metoToken, tokenFarm, snapshot, snapshotId;
     before(async () => {
         daiToken = await DaiToken.new()
         metoToken = await MetoToken.new()
@@ -94,10 +94,10 @@ contract('TokenFarm', ([owner, investor]) => {
             assert.equal(result, true, "investor should have staked");
         })
         
-        it('...should retrieve the time the investor has staked as the current time', async () => {
+       it('...should retrieve the time the investor has staked as the current time', async () => {
             result = await tokenFarm.timeOfStakingFor(investor);
             resultInt = parseInt(result.toString())
-            const snapShotStaking = await takeSnapshot()
+            const snapShotStaking = await helper.takeSnapshot()
             const differenceAbs = Math.abs(resultInt - parseInt(snapShotStaking.id/1000))
             //there is a slight diff between the snapshot time and the current block time that was saved, so we take this into consideration
             const isNow = differenceAbs >= 0 && differenceAbs <= 3
@@ -109,19 +109,9 @@ contract('TokenFarm', ([owner, investor]) => {
             //console.log(`Stakers array: ${result}`)
             assert.equal(result.length, 1, 'should have 1 address');
         })
-
-        snapShot = await takeSnapshot();
-        snapShotId = snapShot['result'];
     })
 
     describe('Token farm withdrawing', async () => {
-        before(async function () {
-            await advanceTimeAndBlock(86400)
-        });
-        after(async () => {
-            await revertToSnapShot(snapShotId);
-        });
-
         it('...should fail for an account that has not staked', async () => {
         await truffleAssert.reverts(tokenFarm.withdrawTokens(tokens('100'), { from: owner }));
         })
@@ -134,7 +124,12 @@ contract('TokenFarm', ([owner, investor]) => {
         await truffleAssert.reverts(tokenFarm.withdrawTokens(tokens('0'), { from: investor }));
         })
 
+        it('...should not be able to withdraw tokens if at least a day has not passed', async () => {
+            await truffleAssert.reverts(tokenFarm.withdrawTokens(tokens('50'), { from: investor }));
+        })
+
         it('...should emit an event after withdrawing 50 tokens', async () => {
+        await helper.advanceTimeAndBlock(SECONDS_IN_DAY); //advance 1 days
         result = await tokenFarm.withdrawTokens(tokens('50'), { from: investor });
         assert.equal(result.logs.length, 1, 'should trigger one event');
         assert.equal(result.logs[0].event, 'Withdrawn', 'should be the "Withdrawn" event');

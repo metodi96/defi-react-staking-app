@@ -65,7 +65,7 @@ contract TokenFarm {
         require(_amount <= stakingBalance[msg.sender], "Cannot withdraw more than you have in your staking balance");
         require(hasStaked[msg.sender], "Caller must have staked in order to withdraw something");
         //allow them to withdraw a week after their latest stake
-        require(timeOfStakingFor[msg.sender] + 1 days <= block.timestamp);
+        require(block.timestamp >= (timeOfStakingFor[msg.sender] + 1 days), "The block timestamp should be at least a day after the time of staking");
 
         //transfer mock dai tokens to this contract for staking
         daiToken.transfer(msg.sender, _amount);
