@@ -57,7 +57,7 @@ const FeaturesTiles = ({
       const imgs = [];
       for (let i = 0; i < 6; i++) {
         imgs[i] = (await import(`./../../assets/images/feature-tile-icon-0${i + 1}.svg`)).default;
-        console.log(i, imgs[i]);
+        //console.log(i, imgs[i]);
       }
       setImages(imgs);
     })();
